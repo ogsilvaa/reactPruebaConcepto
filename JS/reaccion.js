@@ -4,11 +4,18 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var mensajes = function mensajes() {
+    _classCallCheck(this, mensajes);
+};
+
+mensajes.Ganador = 'Ganador: ';
+mensajes.Siguiente = 'Siguiente Jugador: ';
 
 var Square = function (_React$Component) {
     _inherits(Square, _React$Component);
@@ -91,9 +98,9 @@ var Board = function (_React$Component2) {
             var winner = calculateWinner(this.state.squares);
             var status = void 0;
             if (winner) {
-                status = 'Winner: ' + winner;
+                status = mensajes.Ganador + winner;
             } else {
-                status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O');
+                status = mensajes.Siguiente + (this.state.xIsNext ? 'X' : 'O');
             }
 
             return React.createElement(
@@ -166,13 +173,7 @@ var Game = function (_React$Component3) {
 }(React.Component);
 
 function calculateWinner(squares) {
-    var lines = [
-    //horizontal
-    [0, 1, 2], [3, 4, 5], [6, 7, 8],
-    //vertical
-    [0, 3, 6], [1, 4, 7], [2, 5, 8],
-    //diagonales
-    [0, 4, 8], [2, 4, 6]];
+    var lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
     for (var i = 0; i < lines.length; i++) {
         var _lines$i = _slicedToArray(lines[i], 3),
             a = _lines$i[0],
@@ -185,6 +186,4 @@ function calculateWinner(squares) {
     }
     return null;
 }
-// ========================================
-
 ReactDOM.render(React.createElement(Game, null), document.getElementById('root'));

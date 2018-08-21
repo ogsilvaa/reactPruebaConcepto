@@ -1,3 +1,7 @@
+class mensajes {
+    static Ganador='Ganador: ';
+    static Siguiente='Siguiente Jugador: ';
+}
 class Square extends React.Component {
     constructor(props) {
         super(props);
@@ -47,11 +51,11 @@ class Board extends React.Component {
         const winner = calculateWinner(this.state.squares);
         let status;
         if (winner) {
-            status = 'Winner: ' + winner
+            status = mensajes.Ganador + winner
         }
         else {
-            status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O');
-        }
+            status = mensajes.Siguiente + (this.state.xIsNext ? 'X' : 'O');
+        } 
 
         return (
             <div>
@@ -92,15 +96,12 @@ class Game extends React.Component {
 }
 function calculateWinner(squares) {
     const lines = [
-        //horizontal
         [0, 1, 2],
         [3, 4, 5],
         [6, 7, 8],
-        //vertical
         [0, 3, 6],
         [1, 4, 7],
         [2, 5, 8],
-        //diagonales
         [0, 4, 8],
         [2, 4, 6]
     ];
@@ -112,8 +113,6 @@ function calculateWinner(squares) {
     }
     return null
 }
-// ========================================
-
 ReactDOM.render(
     <Game />,
     document.getElementById('root')
